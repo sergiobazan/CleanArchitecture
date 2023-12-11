@@ -1,6 +1,6 @@
 using CleanArchitecture.Domain.Abstractions;
 using CleanArchitecture.Domain.Alquileres.Events;
-using CleanArchitecture.Domain.Vehiculos;
+using CleanArchitecture.Domain.Shared;
 
 namespace CleanArchitecture.Domain.Alquileres;
 
@@ -120,6 +120,21 @@ public sealed class Alquiler : Entity
         FechaCancelacion = utcNow;
 
         RaiseDomainEvent(new AlquilerCanceladoDomainEvent(Id));
+
+        return Result.Success();
+    }
+
+    public Result Completar(DateTime utcNow)
+    {
+        if (Status != AlquilerStatus.Confirmado)
+        {
+            return Result.Failure(AlquilerErrors.NotConfirmado);
+        }
+
+        Status = AlquilerStatus.Completado;
+        FechaCancelacion = utcNow;
+
+        RaiseDomainEvent(new AlquilerCompletadoDomainEvent(Id));
 
         return Result.Success();
     }
