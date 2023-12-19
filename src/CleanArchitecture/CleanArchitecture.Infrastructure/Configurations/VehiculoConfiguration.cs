@@ -10,11 +10,11 @@ internal sealed class VehiculoConfiguration : IEntityTypeConfiguration<Vehiculo>
     public void Configure(EntityTypeBuilder<Vehiculo> builder)
     {
         builder.ToTable("vehiculos");
-        builder.HasKey(Vehiculo => Vehiculo.Id);
+        builder.HasKey(vehiculo => vehiculo.Id);
 
-        builder.OwnsOne(Vehiculo => Vehiculo.Direccion);
+        builder.OwnsOne(vehiculo => vehiculo.Direccion);
 
-        builder.Property(Vehiculo => Vehiculo.Modelo)
+        builder.Property(vehiculo => vehiculo.Modelo)
             .HasMaxLength(200)
             .HasConversion(modelo => modelo!.Value, value => new Modelo(value));
 
@@ -22,12 +22,12 @@ internal sealed class VehiculoConfiguration : IEntityTypeConfiguration<Vehiculo>
             .HasMaxLength(500)
             .HasConversion(vin => vin!.Value, value => new Vin(value));
         
-        builder.OwnsOne(Vehiculo => Vehiculo.Precio, priceBuilder => {
+        builder.OwnsOne(vehiculo => vehiculo.Precio, priceBuilder => {
             priceBuilder.Property(moneda => moneda.TipoMoneda)
                 .HasConversion(tipoMoneda => tipoMoneda.Codigo, codigo => TipoMoneda.FromCodigo(codigo!));
         });
 
-        builder.OwnsOne(vehiculo => vehiculo.Matenimiento, priceBuilder => {
+        builder.OwnsOne(vehiculo => vehiculo.Mantenimiento, priceBuilder => {
             priceBuilder.Property(moneda => moneda.TipoMoneda)
             .HasConversion(tipoMoneda => tipoMoneda.Codigo, codigo => TipoMoneda.FromCodigo(codigo!));
         });

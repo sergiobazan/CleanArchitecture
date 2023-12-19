@@ -10,7 +10,7 @@ public sealed class Vehiculo : Entity
         Modelo modelo,
         Vin vin,
         Moneda precio,
-        Moneda matenimiento,
+        Moneda mantenimiento,
         DateTime? fechaUltimaAlquiler,
         List<Accesorio> accesorios,
         Direccion? direccion
@@ -19,7 +19,7 @@ public sealed class Vehiculo : Entity
         Modelo = modelo;
         Vin = vin;
         Precio = precio;
-        Matenimiento = matenimiento;
+        Mantenimiento = mantenimiento;
         FechaUltimaAlquiler = fechaUltimaAlquiler;
         Direccion = direccion;
         Accesorios = accesorios;
@@ -29,7 +29,7 @@ public sealed class Vehiculo : Entity
    public Vin? Vin { get; private set; }
    public Direccion? Direccion { get; private set; }
    public Moneda? Precio { get; private set; }
-   public Moneda? Matenimiento { get; private set; }
+   public Moneda? Mantenimiento { get; private set; }
    public DateTime? FechaUltimaAlquiler { get; internal set; }
    public List<Accesorio> Accesorios { get; private set; } = new();
 }

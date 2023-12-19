@@ -39,16 +39,16 @@ public class PrecioService
         var precioTotal = Moneda.Zero();
         precioTotal += precioPorPeriodo;
 
-        if (!vehiculo!.Matenimiento!.IsZero())
+        if (!vehiculo!.Mantenimiento!.IsZero())
         {
-            precioTotal += vehiculo.Matenimiento;
+            precioTotal += vehiculo.Mantenimiento;
         }
 
         precioTotal += accesorioCharges;
 
         return new PrecioDetalle(
             precioPorPeriodo, 
-            vehiculo.Matenimiento,
+            vehiculo.Mantenimiento,
             accesorioCharges,
             precioTotal
             );
