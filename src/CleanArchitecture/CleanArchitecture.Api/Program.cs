@@ -1,3 +1,4 @@
+using CleanArchitecture.Api.Extensions;
 using CleanArchitecture.Application;
 using CleanArchitecture.Infrastructure;
 
@@ -18,6 +19,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ApplyMigration();
+app.SeedData();
 
 app.MapControllers();
 
